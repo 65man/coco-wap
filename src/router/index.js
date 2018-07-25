@@ -6,6 +6,7 @@ import Welcome from '@/views/Welcome'
 import Game from '@/views/Game'
 import About from '@/views/About'
 import Recruit from '@/views/Recruit'
+import Gift from '@/views/Gift'
 
 import '@/styles/index.scss'
 
@@ -26,13 +27,17 @@ export default new Router({
       path: 'game',
       component: Game
     }, {
-      name: 'about',
-      path: 'about',
-      component: About
+      name: 'gift',
+      path: 'gift',
+      component: Gift
     }, {
       name: 'recruit',
       path: 'recruit',
       component: Recruit
+    }, {
+      name: 'about',
+      path: 'about',
+      component: About
     }]
   }]
 })

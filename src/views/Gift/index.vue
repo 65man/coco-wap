@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    about
+  <div class="gift">
+    gift
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-.about{
-  padding-top:40px;
+.recruit{
+  margin-top:40px;
 }
 </style>

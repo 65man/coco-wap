@@ -1,7 +1,8 @@
 <template>
   <div class="header">
     <router-link tag="a" to="/" class="logo">
-      <img src="../../assets/logo.png" alt="">
+      <img src="../../assets/logo(1).png" alt="">
+      <span>可可豆</span>
     </router-link>
   </div>
 </template>
@@ -17,6 +18,7 @@ export default {
   width: 100%;
   height: 40px;
   // background: url(../../assets/logo.png) no-repeat;
+  background: #fff;
   border-bottom: 1px solid #ddd;
   line-height: 40px;
   position: fixed;
@@ -31,12 +33,17 @@ export default {
     height: 31px;
     max-width: 120px;
     float: left;
-    margin-top: 11px;
+    margin-top: 5px;
     margin-left: 5%;
     >img{
-      width: 44%;
-      height: 20px;
-      display: block;
+      width: 25%;
+      height: 30px;
+      display: inline-block;
+    }
+    >span{
+      vertical-align: super;
+      line-height: 31px;
+      font-size: 14px;
     }
   }
 }

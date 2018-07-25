@@ -3,7 +3,8 @@
     <!-- <swiper :aspect-ratio="300/800" loop auto :list="swriperList" :index="imgIndex" @on-index-change="onIndexChange"></swiper> -->
     <!-- 轮播图 -->
     <div class="welcome-swiper">
-      <swiper :aspect-ratio="300/800" @on-index-change="onSwiperItemIndexChange" v-model="swiperItemIndex">
+      <!-- @on-index-change="onSwiperItemIndexChange" v-model="swiperItemIndex" -->
+      <swiper :aspect-ratio="300/800" >
         <swiper-item class="swiper-demo-img" v-for="(item, index) in demo04_list" :key="index">
           <img :src="item" style="display:block;width:100%">
         </swiper-item>
@@ -11,6 +12,7 @@
     </div>
     <!-- 主题内容 -->
     <div class="welcome-main">
+      <!-- 今日推荐开始 -->
       <div class="recommend bgd">
         <div class="recom-title">
           <div class="fl z">今日推荐</div>
@@ -29,7 +31,56 @@
                     </div>
                     <div class="game-msg fl">
                       <div class="game-title">屠龙破晓（官网）</div>
-                      <div class="iconfont">&#xe620;&#xe620;&#xe620;&#xe620;&#xe620;</div>
+                      <!-- <div class="iconfont">&#xe620;&#xe620;&#xe620;&#xe620;&#xe620;</div> -->
+                      <i class="iconfont">&#xe6d5;&#xe6d5;&#xe6d5;&#xe6d5;</i>
+                      <div class="game-summary ell">三角合一，热血重写新传奇</div>
+                    </div>
+                    <!-- <div class="tag">
+                      <i></i>
+                      <span>免费</span>
+                    </div> -->
+                  </a>
+                </div>
+                <div class="one-block b1">
+                  <a class="link-block clearfix" title="屠龙破晓（官网）" href="http://37.com.cn/tlpx/">
+                    <div class="game-icon fl">
+                      <img alt="屠龙破晓（官网）" src="../../assets/1531203757949225.png">
+                    </div>
+                    <div class="game-msg fl">
+                      <div class="game-title">屠龙破晓（官网）</div>
+                      <i class="iconfont">&#xe6d5;&#xe6d5;&#xe6d5;&#xe6d5;</i>
+                      <div class="game-summary ell">三角合一，热血重写新传奇</div>
+                    </div>
+                    <!-- <div class="tag">
+                      <i></i>
+                      <span>免费</span>
+                    </div> -->
+                  </a>
+                </div>
+                <div class="one-block b1">
+                  <a class="link-block clearfix" title="屠龙破晓（官网）" href="http://37.com.cn/tlpx/">
+                    <div class="game-icon fl">
+                      <img alt="屠龙破晓（官网）" src="../../assets/1531203757949225.png">
+                    </div>
+                    <div class="game-msg fl">
+                      <div class="game-title">屠龙破晓（官网）</div>
+                      <i class="iconfont">&#xe6d5;&#xe6d5;&#xe6d5;&#xe6d5;</i>
+                      <div class="game-summary ell">三角合一，热血重写新传奇</div>
+                    </div>
+                    <!-- <div class="tag">
+                      <i></i>
+                      <span>免费</span>
+                    </div> -->
+                  </a>
+                </div>
+                <div class="one-block b1">
+                  <a class="link-block clearfix" title="屠龙破晓（官网）" href="http://37.com.cn/tlpx/">
+                    <div class="game-icon fl">
+                      <img alt="屠龙破晓（官网）" src="../../assets/1531203757949225.png">
+                    </div>
+                    <div class="game-msg fl">
+                      <div class="game-title">屠龙破晓（官网）</div>
+                      <i class="iconfont">&#xe6d5;&#xe6d5;&#xe6d5;&#xe6d5;</i>
                       <div class="game-summary ell">三角合一，热血重写新传奇</div>
                     </div>
                     <!-- <div class="tag">
@@ -42,6 +93,42 @@
             </ul>
           </div>
         </div>
+      </div>
+      <!-- 今日推荐结束 -->
+      <div class="server-list bgd">
+        <tab>
+          <tab-item selected @on-item-click="tabIndex(0)">开服表</tab-item>
+          <tab-item @on-item-click="tabIndex(1)">新游表</tab-item>
+        </tab>
+      </div>
+      <div class="server-box" v-if="navIndex==0">
+
+        <div class="sertable">
+          <table class="server-table" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <th class="th1">开服名称</th>
+                <th class="th2">开服时间</th>
+                <th class="th3">礼包</th>
+                <th class="th4">下载</th>
+              </tr>
+
+            <tbody>
+            <tr>
+              <td><span class="ser-tit">《梦幻问仙》4服</span></td>
+              <td>7-26</td>
+              <td><a class="iconfont lb" href="#">&#xe678;</a></td>
+              <td><a class="iconfont xz" href="#">&#xe6ad;</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+                    <div class="get-more">
+                        <a id="server" href="javascript:;">查看更多</a>
+                    </div>
+      </div>
+      <div class="new-game" v-if="navIndex==1">
+        新游戏
       </div>
     </div>
   </div>
@@ -94,12 +181,16 @@ export default {
     return {
       swriperList: urlList,
       imgIndex: '',
-      demo04_list: imgList
+      demo04_list: imgList,
+      navIndex: 0
     }
   },
   methods: {
     onIndexChange () {
       console.log(11)
+    },
+    tabIndex (val) {
+      this.navIndex = val
     }
   }
 }
@@ -107,7 +198,7 @@ export default {
 
 <style lang="scss">
 .welcome {
-  margin-top: 40px;
+  padding-top: 40px;
   .welcome-main {
     width: 98%;
     margin: 10px auto 0;
@@ -187,6 +278,37 @@ export default {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+.server-box{
+  .sertable{
+    border: #d5d5d5 solid 1px;
+    .server-table{
+      width: 100%;
+      >tr{
+        th{
+          background-color: #f6f6f6;
+          height: 42px;
+          text-align: center;
+          color: #666;
+          font-size: 12px;
+          line-height: 42px;
+          font-weight: bold;
+        }
+        .th1{
+          width: 50%;
+        }
+        .th2{
+          width: 20%;
+        }
+        .th3{
+          width: 15%;
+        }
+        .th4{
+          width: 15%;
         }
       }
     }

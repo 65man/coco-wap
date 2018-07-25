@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    about
+  <div class="game-info">
+
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style lang="scss">
-.about{
-  padding-top:40px;
-}
+
 </style>
+

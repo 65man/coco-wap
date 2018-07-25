@@ -5,13 +5,15 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from '@/router'
-import { Rater } from 'vux'
+import { Rater, Tab, TabItem } from 'vux'
 
 // 引入icon
 import Icon from 'vue-svg-icon/Icon.vue'
 
 Vue.component('rater', Rater)
 Vue.component('icon', Icon)
+Vue.component('tab', Tab)
+Vue.component('tab-item', TabItem)
 
 Vue.use(VueRouter)
 
