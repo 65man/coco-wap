@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+
     <tabbar>
       <tabbar-item link='/' selected >
         <icon slot="icon" name="index" scale="2"></icon>
@@ -9,7 +9,7 @@
         <icon slot="icon" name="game" scale="3"></icon>
         <span slot="label">游戏</span>
       </tabbar-item>
-      <tabbar-item  link="/about">
+      <tabbar-item  link="/gift">
         <icon slot="icon" name="gift" scale="2.5"></icon>
         <span slot="label">礼包</span>
       </tabbar-item>
@@ -22,7 +22,7 @@
         <span slot="label">关于</span>
       </tabbar-item>
     </tabbar>
-  </div>
+
 </template>
 
 <script>
@@ -43,6 +43,9 @@ export default {
   // left: 0;
   // bottom: 0;
   // height: 53px;
+}
+.weui-tabbar{
+  position: fixed !important;
 }
 </style>
 

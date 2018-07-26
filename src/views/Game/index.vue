@@ -65,7 +65,7 @@
         </div>
 
         <div class="game-box" v-if="navIndex == 1">
-          <div class="ranking game-list-box">
+          <!-- <div class="ranking game-list-box">
             <div class="game-row clearfix">
               <div class="tag-box fl">
                 <div class="ln-tag lt1">
@@ -130,25 +130,64 @@
               </div>
             </div>
 
-          </div>
+          </div> -->
+          <GameInfo @onDialog="showDialog"></GameInfo>
         </div>
 
       </div>
     </div>
     <!-- 游戏内容结束 -->
+
+    <!-- 下载弹框 -->
+    <div v-transfer-dom>
+      <confirm
+      v-model="showDown"
+      hide-on-blur
+      title="平台类型"
+      confirm-text="安卓"
+      cancel-text="苹果"
+      @on-confirm="onAndroid"
+      @on-cancel="onIos"
+      >
+        <p style="text-align:center;">请选择下载平台</p>
+      </confirm>
+    </div>
+
   </div>
 </template>
 
 <script>
+import { TransferDomDirective as TransferDom } from 'vux'
+import GameInfo from '@/components/GameInfo'
 export default {
+  components: {
+    GameInfo
+  },
+  directives: {
+    TransferDom
+  },
   data () {
     return {
-      navIndex: 0
+      navIndex: 0,
+      showDown: false
     }
   },
   methods: {
     tabIndex (val) {
       this.navIndex = val
+    },
+    showDialog (data) {
+      if (data.dialogType === 'downGame') {
+        this.showDown = true
+      }
+    },
+    onAndroid () {
+      console.log('安卓')
+      // window.location = 'https://www.baidu.com/'
+    },
+    onIos () {
+      console.log('苹果')
+      // window.location = 'https://doc.vux.li/zh-CN/components/confirm.html'
     }
   }
 }

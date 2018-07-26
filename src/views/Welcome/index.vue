@@ -113,29 +113,62 @@
               </tr>
 
             <tbody>
-            <tr>
+            <tr v-for="(item,index) in serverList" :key="index">
+              <td><span class="ser-tit">{{item.serverTitle}}</span></td>
+              <td>{{item.serverTime}}</td>
+              <td><a class="iconfont lb" href="#" @click="getGift">&#xe678;</a></td>
+              <td><a class="iconfont xz" :href="item.downUrl">&#xe6ad;</a></td>
+            </tr>
+            <!-- <tr>
               <td><span class="ser-tit">《梦幻问仙》4服</span></td>
               <td>7-26</td>
               <td><a class="iconfont lb" href="#">&#xe678;</a></td>
               <td><a class="iconfont xz" href="#">&#xe6ad;</a></td>
             </tr>
+            <tr>
+              <td><span class="ser-tit">《梦幻问仙》4服</span></td>
+              <td>7-26</td>
+              <td><a class="iconfont lb" href="#">&#xe678;</a></td>
+              <td><a class="iconfont xz" href="#">&#xe6ad;</a></td>
+            </tr> -->
             </tbody>
           </table>
         </div>
-
-                    <div class="get-more">
-                        <a id="server" href="javascript:;">查看更多</a>
-                    </div>
+        <div class="get-more">
+          <a id="server" href="javascript:;">查看更多</a>
+        </div>
       </div>
       <div class="new-game" v-if="navIndex==1">
-        新游戏
+        <GameInfo @onDialog="showDialog"></GameInfo>
       </div>
     </div>
+
+    <!-- 礼包弹框 -->
+    <div v-transfer-dom>
+      <alert v-model="showGift" title="礼包">礼包已经被领取完</alert>
+    </div>
+
+    <!-- 下载弹框 -->
+    <div v-transfer-dom>
+      <confirm
+      v-model="showDown"
+      hide-on-blur
+      title="平台类型"
+      confirm-text="安卓"
+      cancel-text="苹果"
+      @on-confirm="onAndroid"
+      @on-cancel="onIos"
+      >
+        <p style="text-align:center;">请选择下载平台</p>
+      </confirm>
+    </div>
+
   </div>
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from 'vux'
+import { Swiper, GroupTitle, SwiperItem, XButton, Divider, TransferDomDirective as TransferDom } from 'vux'
+import GameInfo from '@/components/GameInfo'
 
 const imgList = [
   require('../../assets/s1.jpg'),
@@ -169,20 +202,49 @@ const urlList = baseList.map((item, index) => ({
   title: `(可点击)${item.title}`
 }))
 console.log(urlList)
+
+const serverListData = [
+  {
+    serverTitle: '梦幻问仙 4服',
+    serverTime: '7-26',
+    gitfCdk: '123',
+    downUrl: '#'
+  },
+  {
+    serverTitle: '大唐仙灵 4服',
+    serverTime: '7-26',
+    gitfCdk: '123',
+    downUrl: '#'
+  },
+  {
+    serverTitle: '西游H5 4服',
+    serverTime: '7-26',
+    gitfCdk: '123',
+    downUrl: '#'
+  }
+]
+
 export default {
   components: {
     Swiper,
     SwiperItem,
     GroupTitle,
     XButton,
-    Divider
+    Divider,
+    GameInfo
+  },
+  directives: {
+    TransferDom
   },
   data () {
     return {
       swriperList: urlList,
       imgIndex: '',
       demo04_list: imgList,
-      navIndex: 0
+      navIndex: 0,
+      serverList: serverListData,
+      showGift: false,
+      showDown: false
     }
   },
   methods: {
@@ -191,14 +253,42 @@ export default {
     },
     tabIndex (val) {
       this.navIndex = val
+    },
+    getGift () {
+      this.showGift = true
+    },
+    showDialog (data) {
+      if (data.dialogType === 'downGame') {
+        this.showDown = true
+      }
+    },
+    onAndroid () {
+      console.log('安卓')
+      // window.location = 'https://www.baidu.com/'
+    },
+    onIos () {
+      console.log('苹果')
+      // window.location = 'https://doc.vux.li/zh-CN/components/confirm.html'
     }
+  },
+  mounted () {
+    console.log(this.serverList)
   }
 }
 </script>
 
 <style lang="scss">
+.lb{
+  color: #fc9241;
+  font-size: 20px;
+}
+.xz{
+  color: #83ce63;
+  font-size: 20px;
+}
 .welcome {
   padding-top: 40px;
+  padding-bottom: 50px;
   .welcome-main {
     width: 98%;
     margin: 10px auto 0;
@@ -288,7 +378,8 @@ export default {
     border: #d5d5d5 solid 1px;
     .server-table{
       width: 100%;
-      >tr{
+      font-size: 12px;
+      tr{
         th{
           background-color: #f6f6f6;
           height: 42px;
@@ -297,6 +388,19 @@ export default {
           font-size: 12px;
           line-height: 42px;
           font-weight: bold;
+        }
+        td{
+          text-align: center;
+          color: #343434;
+          height: 40px;
+          line-height: 40px;
+          border-top: #d5d5d5 solid 1px;
+          .ser-tit{
+            text-align: left;
+            display: block;
+            padding-left: 5px;
+            // text-align: center;
+          }
         }
         .th1{
           width: 50%;
@@ -311,7 +415,32 @@ export default {
           width: 15%;
         }
       }
+      &:nth-child(n-1){
+        background: #fff;
+      }
     }
+  }
+  .get-more{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 10px;
+    background: #fff;
+    >a{
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #666;
+    }
+  }
+}
+
+.img-box{
+  height: 200px;
+  p{
+
   }
 }
 </style>
