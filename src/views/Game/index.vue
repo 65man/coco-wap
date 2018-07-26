@@ -169,7 +169,11 @@ export default {
   data () {
     return {
       navIndex: 0,
-      showDown: false
+      showDown: false,
+      current: {
+        ios: '',
+        and: ''
+      }
     }
   },
   methods: {
@@ -179,15 +183,18 @@ export default {
     showDialog (data) {
       if (data.dialogType === 'downGame') {
         this.showDown = true
+        console.log(data)
+        this.current.ios = data.ios
+        this.current.and = data.and
       }
     },
     onAndroid () {
-      console.log('安卓')
-      // window.location = 'https://www.baidu.com/'
+      console.log(this.current.and)
+      // window.location = this.current.and
     },
     onIos () {
-      console.log('苹果')
-      // window.location = 'https://doc.vux.li/zh-CN/components/confirm.html'
+      console.log(this.current.ios)
+      // window.location = this.current.ios
     }
   }
 }

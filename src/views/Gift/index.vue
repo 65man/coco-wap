@@ -25,7 +25,7 @@ export default {
   components: {
     GameInfo
   },
-   directives: {
+  directives: {
     TransferDom
   },
   data () {

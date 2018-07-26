@@ -102,13 +102,12 @@ export default {
     }
   },
   mounted () {
-    console.log(this.dialogType)
+    // console.log(this.dialogType)
     // console.log(this.$store)
   },
   methods: {
     downGame (data) {
       data.dialogType = this.dialogType
-      console.log(data)
       this.$emit('onDialog', data)
     }
   }

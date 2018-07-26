@@ -116,21 +116,9 @@
             <tr v-for="(item,index) in serverList" :key="index">
               <td><span class="ser-tit">{{item.serverTitle}}</span></td>
               <td>{{item.serverTime}}</td>
-              <td><a class="iconfont lb" href="#" @click="getGift">&#xe678;</a></td>
-              <td><a class="iconfont xz" :href="item.downUrl">&#xe6ad;</a></td>
+              <td><a class="iconfont lb" href="#" @click="showDialog({dialogType:'gift',ios:item.iosUrl,and:item.androidUrl})">&#xe678;</a></td>
+              <td><a class="iconfont xz" href="#" @click="showDialog({dialogType:'downGame'})">&#xe6ad;</a></td>
             </tr>
-            <!-- <tr>
-              <td><span class="ser-tit">《梦幻问仙》4服</span></td>
-              <td>7-26</td>
-              <td><a class="iconfont lb" href="#">&#xe678;</a></td>
-              <td><a class="iconfont xz" href="#">&#xe6ad;</a></td>
-            </tr>
-            <tr>
-              <td><span class="ser-tit">《梦幻问仙》4服</span></td>
-              <td>7-26</td>
-              <td><a class="iconfont lb" href="#">&#xe678;</a></td>
-              <td><a class="iconfont xz" href="#">&#xe6ad;</a></td>
-            </tr> -->
             </tbody>
           </table>
         </div>
@@ -208,19 +196,22 @@ const serverListData = [
     serverTitle: '梦幻问仙 4服',
     serverTime: '7-26',
     gitfCdk: '123',
-    downUrl: '#'
+    iosUrl: 'ios1',
+    androidUrl: 'and1'
   },
   {
     serverTitle: '大唐仙灵 4服',
     serverTime: '7-26',
     gitfCdk: '123',
-    downUrl: '#'
+    iosUrl: 'ios2',
+    androidUrl: 'and2'
   },
   {
     serverTitle: '西游H5 4服',
     serverTime: '7-26',
     gitfCdk: '123',
-    downUrl: '#'
+    iosUrl: 'ios3',
+    androidUrl: 'and3'
   }
 ]
 
@@ -244,7 +235,11 @@ export default {
       navIndex: 0,
       serverList: serverListData,
       showGift: false,
-      showDown: false
+      showDown: false,
+      current: {
+        ios: '',
+        and: ''
+      }
     }
   },
   methods: {
@@ -254,21 +249,23 @@ export default {
     tabIndex (val) {
       this.navIndex = val
     },
-    getGift () {
-      this.showGift = true
-    },
     showDialog (data) {
       if (data.dialogType === 'downGame') {
         this.showDown = true
+        console.log(data)
+        this.current.ios = data.ios
+        this.current.and = data.and
+      } else if (data.dialogType === 'gift') {
+        this.showGift = true
       }
     },
     onAndroid () {
-      console.log('安卓')
-      // window.location = 'https://www.baidu.com/'
+      console.log(this.current.and)
+      // window.location = this.current.and
     },
     onIos () {
-      console.log('苹果')
-      // window.location = 'https://doc.vux.li/zh-CN/components/confirm.html'
+      console.log(this.current.ios)
+      // window.location = this.current.ios
     }
   },
   mounted () {

@@ -9,29 +9,29 @@ const state = {
       iconUrl: require('@/assets/1532413320965900.png'),
       title: '屠龙破晓（官网）',
       intro: '三角合一，热血重写新传奇',
-      iosUrl: 'ios',
-      androidUrl: 'an'
+      iosUrl: 'ios1',
+      androidUrl: 'an1'
     },
     {
       iconUrl: require('@/assets/1532413320965900.png'),
       title: '屠龙破晓（官网）',
       intro: '三角合一，热血重写新传奇',
-      iosUrl: 'ios',
-      androidUrl: 'an'
+      iosUrl: 'ios2',
+      androidUrl: 'an2'
     },
     {
       iconUrl: require('@/assets/1532413320965900.png'),
       title: '屠龙破晓（官网）',
       intro: '三角合一，热血重写新传奇',
-      iosUrl: 'ios',
-      androidUrl: 'an'
+      iosUrl: 'ios3',
+      androidUrl: 'an3'
     },
     {
       iconUrl: require('@/assets/1532413320965900.png'),
       title: '屠龙破晓（官网）',
       intro: '三角合一，热血重写新传奇',
-      iosUrl: 'ios',
-      androidUrl: 'an'
+      iosUrl: 'ios4',
+      androidUrl: 'an4'
     }
   ]
 }
