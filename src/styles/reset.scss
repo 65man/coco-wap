@@ -46,3 +46,9 @@ html,body{
   margin: 0;
   padding: 0;
 }
+button{
+  margin: 0;
+  // padding: 0;
+  border: 1px solid transparent;  //自定义边框
+  outline: none;    //消除默认点击蓝色边框效果
+}

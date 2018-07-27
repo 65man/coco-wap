@@ -7,6 +7,8 @@ import Game from '@/views/Game'
 import About from '@/views/About'
 import Recruit from '@/views/Recruit'
 import Gift from '@/views/Gift'
+import Rpositions from '@/views/RecruitPositions'
+import Rdetail from '@/views/Rdetail'
 
 import '@/styles/index.scss'
 
@@ -33,11 +35,24 @@ export default new Router({
     }, {
       name: 'recruit',
       path: 'recruit',
-      component: Recruit
+      component: Recruit,
+      children: [{
+        name: 'rpositions',
+        path: 'rpositions',
+        component: Rpositions
+      }]
     }, {
       name: 'about',
       path: 'about',
       component: About
+    }, {
+      name: 'rpositions',
+      path: 'rpositions',
+      component: Rpositions
+    }, {
+      name: 'rdetail',
+      path: 'rdetail',
+      component: Rdetail
     }]
   }]
 })
